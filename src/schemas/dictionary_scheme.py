@@ -6,4 +6,4 @@ class DictionaryCreateScheme(BaseModel):
 
 class DictionarySaveScheme(BaseModel):
     dictionary: Dict[str, Any]  # Указываем, что это словарь
-    file_path: str = "../saved_dictionaries/dictionary.json"
+    file_name: str = "dictionary.json"

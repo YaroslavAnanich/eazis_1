@@ -25,6 +25,19 @@
             "tag_description": "Наречие"
         }
     ],
+    "can": [
+        {
+            "word": "could",
+            "lemma": "can",
+            "morphemes": {
+                "prefix": "",
+                "root": "can",
+                "suffix": ""
+            },
+            "tag": "MD",
+            "tag_description": "Модальный глагол"
+        }
+    ],
     "change": [
         {
             "word": "changed",
@@ -36,22 +49,31 @@
             },
             "tag": "VBN",
             "tag_description": "Глагол, причастие прошедшего времени"
-        }
-    ],
-    "could": [
+        },
         {
-            "word": "could",
-            "lemma": "could",
+            "word": "changing",
+            "lemma": "change",
             "morphemes": {
                 "prefix": "",
-                "root": "could",
-                "suffix": ""
+                "root": "change",
+                "suffix": "ing"
             },
-            "tag": "MD",
-            "tag_description": "Модальный глагол"
+            "tag": "VBG",
+            "tag_description": "Глагол, герундий или причастие настоящего времени"
         }
     ],
     "have": [
+        {
+            "word": "had",
+            "lemma": "have",
+            "morphemes": {
+                "prefix": "",
+                "root": "have",
+                "suffix": ""
+            },
+            "tag": "VBD",
+            "tag_description": "Глагол, прошедшее время"
+        },
         {
             "word": "has",
             "lemma": "have",
@@ -73,6 +95,17 @@
             },
             "tag": "VB",
             "tag_description": "Глагол, базовая форма"
+        },
+        {
+            "word": "having",
+            "lemma": "have",
+            "morphemes": {
+                "prefix": "",
+                "root": "have",
+                "suffix": "ing"
+            },
+            "tag": "VBG",
+            "tag_description": "Глагол, герундий или причастие настоящего времени"
         }
     ],
     "imagine": [
