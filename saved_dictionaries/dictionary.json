@@ -1,0 +1,156 @@
+{
+    "The": [
+        {
+            "word": "The",
+            "lemma": "The",
+            "morphemes": {
+                "prefix": "",
+                "root": "the",
+                "suffix": ""
+            },
+            "tag": "DT",
+            "tag_description": "Определитель"
+        }
+    ],
+    "back": [
+        {
+            "word": "back",
+            "lemma": "back",
+            "morphemes": {
+                "prefix": "",
+                "root": "back",
+                "suffix": ""
+            },
+            "tag": "RB",
+            "tag_description": "Наречие"
+        }
+    ],
+    "change": [
+        {
+            "word": "changed",
+            "lemma": "change",
+            "morphemes": {
+                "prefix": "",
+                "root": "change",
+                "suffix": "ed"
+            },
+            "tag": "VBN",
+            "tag_description": "Глагол, причастие прошедшего времени"
+        }
+    ],
+    "could": [
+        {
+            "word": "could",
+            "lemma": "could",
+            "morphemes": {
+                "prefix": "",
+                "root": "could",
+                "suffix": ""
+            },
+            "tag": "MD",
+            "tag_description": "Модальный глагол"
+        }
+    ],
+    "have": [
+        {
+            "word": "has",
+            "lemma": "have",
+            "morphemes": {
+                "prefix": "",
+                "root": "have",
+                "suffix": "s"
+            },
+            "tag": "VBZ",
+            "tag_description": "Глагол, настоящее время, 3-е лицо единственного числа"
+        },
+        {
+            "word": "have",
+            "lemma": "have",
+            "morphemes": {
+                "prefix": "",
+                "root": "have",
+                "suffix": ""
+            },
+            "tag": "VB",
+            "tag_description": "Глагол, базовая форма"
+        }
+    ],
+    "imagine": [
+        {
+            "word": "imagined",
+            "lemma": "imagine",
+            "morphemes": {
+                "prefix": "",
+                "root": "imagine",
+                "suffix": "ed"
+            },
+            "tag": "VBN",
+            "tag_description": "Глагол, причастие прошедшего времени"
+        }
+    ],
+    "in": [
+        {
+            "word": "in",
+            "lemma": "in",
+            "morphemes": {
+                "prefix": "",
+                "root": "in",
+                "suffix": ""
+            },
+            "tag": "IN",
+            "tag_description": "Предлог или подчинительный союз"
+        }
+    ],
+    "scarcely": [
+        {
+            "word": "scarcely",
+            "lemma": "scarcely",
+            "morphemes": {
+                "prefix": "",
+                "root": "scarcely",
+                "suffix": "ly"
+            },
+            "tag": "RB",
+            "tag_description": "Наречие"
+        }
+    ],
+    "way": [
+        {
+            "word": "ways",
+            "lemma": "way",
+            "morphemes": {
+                "prefix": "",
+                "root": "way",
+                "suffix": "s"
+            },
+            "tag": "NNS",
+            "tag_description": "Существительное, множественное число"
+        }
+    ],
+    "we": [
+        {
+            "word": "we",
+            "lemma": "we",
+            "morphemes": {
+                "prefix": "",
+                "root": "we",
+                "suffix": ""
+            },
+            "tag": "PRP",
+            "tag_description": "Личное местоимение"
+        }
+    ],
+    "world": [
+        {
+            "word": "world",
+            "lemma": "world",
+            "morphemes": {
+                "prefix": "",
+                "root": "world",
+                "suffix": ""
+            },
+            "tag": "NN",
+            "tag_description": "Существительное, единственное число"
+        }
+    ]
+}
