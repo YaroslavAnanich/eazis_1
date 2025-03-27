@@ -48,6 +48,11 @@ body {
     color: white;
 }
 
+#upload-btn {
+    background-color: #6f42c1;
+    color: white;
+}
+
 #save-btn {
     background-color: #28a745;
     color: white;

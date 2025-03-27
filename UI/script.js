@@ -1,13 +1,14 @@
 const HOST = "http://127.0.0.1:8000";
 
 document.addEventListener('DOMContentLoaded', () => {
-    const createBtn = document.getElementById('create-btn');
     const saveBtn = document.getElementById('save-btn');
     const loadBtn = document.getElementById('load-btn');
     const deleteBtn = document.getElementById('delete-btn');
     const clearBtn = document.getElementById('clear-btn');
     const processBtn = document.getElementById('process-btn');
     const addWordBtn = document.getElementById('add-word-btn');
+    const uploadBtn = document.getElementById('upload-btn');
+    const fileInput = document.getElementById('file-input');
     const textInput = document.getElementById('text-input');
     const filenameInput = document.getElementById('filename-input');
     const dictionaryOutput = document.getElementById('dictionary-output');
@@ -52,9 +53,58 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Handle file upload for dictionary creation
+    uploadBtn.addEventListener('click', () => {
+        fileInput.click();
+    });
+
+    fileInput.addEventListener('change', async () => {
+        const file = fileInput.files[0];
+        if (!file) return;
+
+        // Check file extension
+        if (!file.name.toLowerCase().endsWith('.txt') && !file.name.toLowerCase().endsWith('.rtf')) {
+            alert('Please upload a TXT or RTF file');
+            return;
+        }
+
+        try {
+            const formData = new FormData();
+            formData.append('file', file);
+
+            const response = await fetch(HOST + '/create-dictionary-from-file', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.detail || 'Failed to create dictionary from file');
+            }
+
+            const data = await response.json();
+            currentDictionary = data.dictionary;
+            renderDictionary(currentDictionary);
+
+            // Set the filename input to the uploaded file's name (without extension)
+            filenameInput.value = file.name.replace(/\.[^/.]+$/, "");
+
+            // Clear the file input
+            fileInput.value = '';
+
+            alert('Dictionary created successfully from file');
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Error creating dictionary from file: ' + error.message);
+        }
+    });
+
     // Save dictionary
     saveBtn.addEventListener('click', async () => {
-        if (!currentDictionary) {
+        // Collect the current dictionary data from the DOM
+        const updatedDictionary = collectDictionaryData();
+
+        if (!updatedDictionary || Object.keys(updatedDictionary).length === 0) {
             alert('No dictionary content to save');
             return;
         }
@@ -66,9 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            // Collect edited data from DOM
-            const updatedDictionary = collectDictionaryData();
-
             const response = await fetch(HOST + '/save-dictionary', {
                 method: 'POST',
                 headers: {
@@ -334,24 +381,45 @@ document.addEventListener('DOMContentLoaded', () => {
         const wordCards = document.querySelectorAll('.word-card');
 
         wordCards.forEach(card => {
-            const word = card.dataset.word;
-            if (!dictionary[word]) {
-                dictionary[word] = [];
-            }
+            try {
+                const word = card.dataset.word;
+                if (!word) return;
 
-            const entry = {
-                word: card.querySelector('[data-field="word"]').textContent,
-                lemma: card.querySelector('[data-field="lemma"]').textContent,
-                tag: card.querySelector('.word-header span:last-child').textContent.split(' ')[0],
-                tag_description: card.querySelector('.word-header span:last-child').textContent.match(/\((.*?)\)/)[1],
-                morphemes: {
-                    prefix: card.querySelector('[data-field="prefix"]').textContent.replace('—', ''),
-                    root: card.querySelector('[data-field="root"]').textContent,
-                    suffix: card.querySelector('[data-field="suffix"]').textContent.replace('—', '')
+                if (!dictionary[word]) {
+                    dictionary[word] = [];
                 }
-            };
 
-            dictionary[word].push(entry);
+                const wordElement = card.querySelector('[data-field="word"]');
+                const lemmaElement = card.querySelector('[data-field="lemma"]');
+                const headerElement = card.querySelector('.word-header span:last-child');
+                const prefixElement = card.querySelector('[data-field="prefix"]');
+                const rootElement = card.querySelector('[data-field="root"]');
+                const suffixElement = card.querySelector('[data-field="suffix"]');
+
+                if (!wordElement || !lemmaElement || !headerElement ||
+                    !prefixElement || !rootElement || !suffixElement) {
+                    return;
+                }
+
+                const tagMatch = headerElement.textContent.match(/^([^\s]+)/);
+                const descMatch = headerElement.textContent.match(/\((.*?)\)/);
+
+                const entry = {
+                    word: wordElement.textContent,
+                    lemma: lemmaElement.textContent,
+                    tag: tagMatch ? tagMatch[1] : '',
+                    tag_description: descMatch ? descMatch[1] : '',
+                    morphemes: {
+                        prefix: prefixElement.textContent.replace('—', '').trim() || null,
+                        root: rootElement.textContent.trim(),
+                        suffix: suffixElement.textContent.replace('—', '').trim() || null
+                    }
+                };
+
+                dictionary[word].push(entry);
+            } catch (error) {
+                console.error('Error processing word card:', error);
+            }
         });
 
         return dictionary;
