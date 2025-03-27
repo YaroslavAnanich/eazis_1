@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dictionary Editor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>Dictionary Editor</h1>
+            <nav class="menu-bar">
+                <button id="create-btn">Create Dictionary</button>
+                <button id="save-btn">Save Dictionary</button>
+                <button id="load-btn">Load Dictionary</button>
+                <button id="delete-btn">Delete Dictionary</button>
+                <button id="clear-btn">Clear</button>
+                <select id="dictionaries-dropdown">
+                    <option value="">Select a dictionary</option>
+                </select>
+                <input type="text" id="filename-input" placeholder="Dictionary name">
+                <input type="text" id="search-input" placeholder="Search dictionary...">
+                <button id="search-btn">Search</button>
+            </nav>
+        </header>
+
+        <div class="workspace">
+            <div class="input-section">
+                <textarea id="text-input" placeholder="Enter text to analyze..."></textarea>
+                <button id="process-btn">Analyze Text</button>
+
+                <!-- Add Word Form Section -->
+                <div class="add-word-section">
+                    <h3>Add Word Form</h3>
+                    <div class="add-word-form">
+                        <input type="text" id="lemma-input" placeholder="Lemma (e.g., world)">
+                        <input type="text" id="word-form-input" placeholder="Word Form (e.g., worlds)">
+                        <button id="add-word-btn">Add Word</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dictionary-display">
+                <h2>Dictionary Content</h2>
+                <div id="dictionary-output" class="dictionary-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

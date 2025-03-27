@@ -1,59 +1,64 @@
 from fastapi import APIRouter, HTTPException
 
 from src.classes.dictionary_worker import DictionaryWorker
-from src.schemas.dictionary_scheme import DictionaryCreateScheme, DictionarySaveScheme
+from src.schemas.dictionary_response_schemes import DictionaryCreateResponseScheme, DictionarySaveResponseScheme, \
+    DictionaryLoadResponseScheme, DictionaryDeleteResponseScheme, DictionaryAddWordFormResponseScheme, \
+    DictionaryListDictionariesResponseScheme
+from src.schemas.dictionary_schemes import (DictionaryCreateScheme, DictionarySaveScheme,
+                                            DictionaryAddWordScheme, DictionaryDeleteScheme)
 
 router = APIRouter()
 
 
-dictionary_creator = DictionaryWorker()
+dictionary_worker = DictionaryWorker()
 
-@router.post("/create-dictionary")
+@router.post("/create-dictionary", response_model=DictionaryCreateResponseScheme)
 async def create_dictionary(dictionary_create_scheme: DictionaryCreateScheme):
     try:
-        return dictionary_creator.create_dictionary(dictionary_create_scheme.text)
+        return {"dictionary": dictionary_worker.create_dictionary(dictionary_create_scheme.text)}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Ошибка при создании файла: {str(e)}")
 
 
-@router.post("/save-dictionary")
+@router.post("/save-dictionary", response_model=DictionarySaveResponseScheme)
 async def save_dictionary(dictionary_save_scheme: DictionarySaveScheme):
     try:
-        return dictionary_creator.save_dictionary_file(dictionary_save_scheme.dictionary, dictionary_save_scheme.file_name)
+        return {"message": dictionary_worker.save_dictionary_file(dictionary_save_scheme.dictionary, dictionary_save_scheme.file_name)}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Ошибка при сохранении файла: {str(e)}")
 
 
-@router.get("/load-dictionary")
+@router.get("/list-dictionaries", response_model=DictionaryListDictionariesResponseScheme)
+async def list_dictionaries():
+    try:
+        return {"dictionaries": dictionary_worker.list_dictionary_files()}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Ошибка при получении списка существующих словарей: {str(e)}")
+
+
+@router.get("/load-dictionary", response_model=DictionaryLoadResponseScheme)
 async def load_dictionary(file_path: str = "dictionary.json"):
     try:
-        return dictionary_creator.load_dictionary_file(file_path)
+        return {"dictionary": dictionary_worker.load_dictionary_file(file_path)}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Ошибка при загрузке словаря: {str(e)}")
 
 
-@router.delete("/delete-dictionary")
-async def load_dictionary(file_path: str = "dictionary.json"):
+@router.delete("/delete-dictionary", response_model=DictionaryDeleteResponseScheme)
+async def delete_dictionary(dictionary_save_scheme: DictionaryDeleteScheme):
     try:
-        return dictionary_creator.delete_dictionary_file(file_path)
+        return {"message": dictionary_worker.delete_dictionary_file(dictionary_save_scheme.file_path)}
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Ошибка при загрузке словаря: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Ошибка при удалении словаря: {str(e)}")
 
-@router.delete("/test")
-async def load_dictionary():
-    dc = DictionaryWorker()
 
-    # Загружаем существующий словарь
-    dictionary = dc.load_dictionary_file("dictionary.json")
+@router.post("/add-word-form", response_model=DictionaryAddWordFormResponseScheme)
+async def add_word(dictionary_add_scheme: DictionaryAddWordScheme):
+    dictionary = dictionary_add_scheme.dictionary
+    lemma = dictionary_add_scheme.lemma
+    word_form = dictionary_add_scheme.word_form
 
-    # Добавляем новую словоформу для леммы "have" (прошедшее время)
-    dictionary = dc.add_word_form_by_tag(dictionary, "have", "VBD")  # Добавит "had"
-
-    # Добавляем новую словоформу для леммы "change" (причастие настоящего времени)
-    dictionary = dc.add_word_form_by_tag(dictionary, "change", "VBG")  # Добавит "changing"
-
-    # Добавляем словоформу вручную
-    dictionary = dc.add_word_form(dictionary, "have", "having")
-
-    # Сохраняем обновленный словарь
-    dc.save_dictionary_file(dictionary, "dictionary.json")
+    try:
+        return {"dictionary": dictionary_worker.add_word_form(dictionary, lemma, word_form)}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Ошибка при добавлении словоформы: {str(e)}")

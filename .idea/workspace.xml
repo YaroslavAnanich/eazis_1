@@ -5,18 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d1cf3578-c03e-440e-b9aa-f50d14f659f7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/eazis_lab_1.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/classes/dictionary_worker.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/saved_dictionaries/dictionary.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/app.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/dictionary.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/nltk_tags_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/nltk_config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/schemes.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/dictionary_scheme.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/schemas/dictionary_schemes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/dictionary.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/dictionary.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/dictionary_worker.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/dictionary_worker.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db/dictionary.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/schemas/dictionary_scheme.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +22,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="HTML File" />
+        <option value="CSS File" />
+        <option value="JavaScript File" />
         <option value="Python Script" />
       </list>
     </option>
@@ -46,10 +45,12 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
     "Python.main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "main",
+    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -60,9 +61,10 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Labs\eazis\eazis_lab_1" />
+      <recent name="C:\Labs\eazis\eazis_lab_1\src" />
       <recent name="C:\Labs\eazis\eazis_lab_1\src\classes" />
       <recent name="C:\Labs\eazis\eazis_lab_1\src\schemas" />
-      <recent name="C:\Labs\eazis\eazis_lab_1\src" />
     </key>
   </component>
   <component name="RunManager">
@@ -114,7 +116,8 @@
       <workItem from="1742956743171" duration="1782000" />
       <workItem from="1742958556697" duration="23000" />
       <workItem from="1742958593506" duration="510000" />
-      <workItem from="1742959116085" duration="9921000" />
+      <workItem from="1742959116085" duration="11204000" />
+      <workItem from="1743030143209" duration="29756000" />
     </task>
     <servers />
   </component>
